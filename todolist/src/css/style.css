@@ -1,0 +1,181 @@
+:root {
+    --brand: #AC58F5;
+    --darkest: #a243f4;
+    --dark: #222C42;
+    --mid: #64748B;
+    --light: #B1BED1;
+    --lightest: #F8FBFE;
+}
+
+body {
+    background: conic-gradient(at top left, #0f172a, var(--brand), #0f172a);
+    display: flex;
+    font-family: 'Satoshi', sans-serif;
+    justify-content: center;
+}
+
+/* Title */
+.container_title {
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+.img-title {
+    height: 20px;
+    vertical-align: middle;
+}
+
+/* Container */
+.container {
+    margin-top: 30px;
+    background-color: white;
+    width: 400px;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1em 2em rgba(0, 0, 0, 0.3);
+}
+
+/* Container input */
+.container_input {
+    border-radius: 4px;
+    display: flex;
+    border: 1px solid var(--brand);
+    width: 100%;
+    align-items: center;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.container_input input {
+    /* margin-left: 2px; */
+    border: none;
+    color: var(--dark);
+    flex: 7;
+    height: 100%;
+    border-radius: 5px 0 0 5px;
+    padding: 0 5px;
+    outline: none;
+}
+
+.container_input button {
+    background-color: var(--brand);
+    color: white;
+    border: none;
+    padding: 5px;
+    height: 100%;
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+}
+
+.container_input button:hover {
+    background-color: var(--darkest);
+}
+
+/* Container todolist */
+.container_todolist {
+    display: flex;
+    flex-direction: column;
+}
+
+.todolist_tasks {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--darkest);
+    padding: 8px 5px;
+    border-radius: 4px;
+}
+
+/* .todolist_items {
+} */
+
+/* left side of container ITEMS */
+/* .item_task {
+    display: flex;
+    align-items: center;
+} */
+
+.checkbox {
+    appearance: none;
+    background-color: var(--brand);
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    border: 1px solid #0F172A;
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    border-color: transparent;
+    background-color: var(--darkest);
+    border: 1px solid #0F172A;
+    border-radius: 3px;
+}
+
+.checkbox:checked::before {
+    background: url(/src/icons/check.svg);
+    background-size: 100%;
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.checkbox:checked+label {
+    text-decoration: line-through;
+    color: grey;
+}
+
+.check_label {
+    flex: 1;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+
+/* Right side of container ITEMS */
+/* .item_buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+} */
+
+.todolist_tasks button {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    cursor: pointer;
+    margin: 0 2px;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: var(--brand);
+    border: none;
+
+}
+
+.todolist_tasks button:hover {
+    background-color: var(--darkest);
+}
+
+/* Section empty */
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty img {
+    position: relative;
+    left: -10px;
+    height: 300px;
+    margin: 10px auto;
+}
+
+.empty p {
+    text-align: center;
+    font-size: 18px;
+}

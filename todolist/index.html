@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do list</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="container_title">Today's tasks <img class="img-title" src="./src/icons/file.svg" alt="image file">
+        </h1>
+        <div class="container_global">
+            <div class="container_input">
+                <input class="input-add" type="text" placeholder="Add task">
+                <button class="btn-add">Add Task</button>
+            </div>
+            <div class="container_todolist">
+                <ul class="todolist">
+                    <!-- <li class="todolist_tasks">
+
+                        <input class="checkbox" type="checkbox">
+                        <label class="check_label">First Task</label>
+
+                        <button class="item_buttons-edit">
+                            <img src="./src/icons/pencil.svg" alt="pencil icon">
+                        </button>
+                        <button class="item_buttons-trash">
+                            <img src="./src/icons/trash.svg" alt="trash icon">
+                        </button>
+
+                    </li> -->
+                </ul>
+            </div>
+            <div class="empty">
+                <img src="./src/img/mobile_search.svg" alt="image mobile search">
+                <h2>Your tasks list is empty!</h2>
+                <p>You don't have any active tasks right now. Try add some!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
