@@ -25,7 +25,15 @@ currentDayP.textContent = day;
 
 container.prepend(currentDayP);
 
-// Task for today ---------------
+
+function isEmpty() {
+    const controlEmpty = ulItems.querySelector('li') !== null;
+    if (controlEmpty) {
+        empty.style.display = 'none';
+    } else {
+        empty.style.display = 'flex';
+    }
+}
 
 addBtn.addEventListener("click", (e) => {
     const taskName = inputAdd.value.trim();
@@ -34,19 +42,38 @@ addBtn.addEventListener("click", (e) => {
 
         ulItems.insertAdjacentHTML("beforeend", task);
         inputAdd.value = '';
-        empty.style.display = 'none';
 
         const deleteBtn = ulItems.lastElementChild.querySelector('.item_buttons-trash');
 
         console.log(deleteBtn);
+        isEmpty();
 
         deleteBtn.addEventListener('click', (e) => {
             const item = e.target.closest('li');
             console.log(item);
             ulItems.removeChild(item);
+            isEmpty();
         });
+
+        const editBtn = ulItems.lastElementChild.querySelector('.item_buttons-edit');
+
+        editBtn.addEventListener('click', (e) => {
+            const selectLabel = e.target.closest('li');
+            const editLabel = selectLabel.querySelector('label')
+            console.log(e.target);
+            console.log(selectLabel)
+            console.log(editLabel);
+            let newText = prompt('Edit task: ').trim();
+
+            if (newText == '') {
+                alert('Enter a valid task')
+            } else {
+                editLabel.textContent = newText;
+            }
+        })
 
     } else {
         alert('Enter a task')
     }
 });
+
