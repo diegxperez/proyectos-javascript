@@ -35,7 +35,7 @@ function isEmpty() {
     }
 }
 
-addBtn.addEventListener("click", (e) => {
+function createItem() {
     const taskName = inputAdd.value.trim();
     if (taskName !== '') {
         const task = `<li class="todolist_tasks"><input class="checkbox" type="checkbox"><label class="check_label">${taskName}</label><button class="item_buttons-edit"><img src="./src/icons/pencil.svg" alt="pencil icon"></button><button class="item_buttons-trash"><img src="./src/icons/trash.svg" alt="trash icon"></button></li>`;
@@ -45,7 +45,7 @@ addBtn.addEventListener("click", (e) => {
 
         const deleteBtn = ulItems.lastElementChild.querySelector('.item_buttons-trash');
 
-        console.log(deleteBtn);
+        // console.log(deleteBtn);
         isEmpty();
 
         deleteBtn.addEventListener('click', (e) => {
@@ -75,5 +75,13 @@ addBtn.addEventListener("click", (e) => {
     } else {
         alert('Enter a task')
     }
-});
+}
 
+addBtn.addEventListener("click", createItem);
+inputAdd.addEventListener("keyup", (e) => {
+    console.log(e.code);
+    // consultar sobre event.code
+    if (e.code == 'Enter') {
+        createItem();
+    };
+});
