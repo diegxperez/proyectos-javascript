@@ -9,14 +9,14 @@ const empty = document.querySelector('.empty');
 
 // Object Date
 const date = new Date();
-const months = ['January', 'February', 'March', 'April', 'May', 'June', ' July', 'August', 'September', 'October', 'November', 'December'];
+const months = ['Jan.', 'Feb.', 'Mar.', 'Apri', 'May.', 'Jun.', ' Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'];
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 let currentDay = days[date.getDay()];
-let currentMonth = months[date.getMonth()].substring(0, 3).concat('.');
+let currentMonth = months[date.getMonth()];
 
 function getCurrentDate(currentDay, currentMonth) {
-    return currentDay.concat(' ').concat(date.getDate()).concat(` de `).concat(currentMonth);
+    return `${currentDay} ${date.getDate()} ${currentMonth}`
 }
 
 const day = getCurrentDate(currentDay, currentMonth);
@@ -25,57 +25,71 @@ currentDayP.textContent = day;
 
 container.prepend(currentDayP);
 
-
 function isEmpty() {
-    const controlEmpty = ulItems.querySelector('li') !== null;
-    if (controlEmpty) {
+    if (ulItems.querySelector('li')) {
         empty.style.display = 'none';
     } else {
         empty.style.display = 'flex';
     }
 }
 
+const createTask = (taskName) =>
+    `<li class="todolist_tasks">
+            <input class="checkbox" type="checkbox">
+            <label class="check_label">${taskName}</label>
+            <button class="item_buttons-edit">
+                <img src="./src/icons/pencil.svg" alt="pencil icon">
+            </button>
+            <button class="item_buttons-trash">
+                <img src="./src/icons/trash.svg" alt="trash icon">
+            </button>
+        </li>
+`;
+
+function hidrateDeleteBtn() {
+    const deleteBtn = ulItems.lastElementChild.querySelector('.item_buttons-trash');
+
+    deleteBtn.addEventListener('click', (e) => {
+        const item = e.target.closest('li');
+        console.log(item);
+        ulItems.removeChild(item);
+        isEmpty();
+    });
+}
+
+function hidrateEditBtn() {
+    const editBtn = ulItems.lastElementChild.querySelector('.item_buttons-edit');
+
+    editBtn.addEventListener('click', (e) => {
+        const selectLabel = e.target.closest('li');
+        const editLabel = selectLabel.querySelector('label')
+        const newText = prompt('Edit task: ').trim();
+
+        if (newText == '') {
+            alert('Enter a valid task')
+        } else {
+            editLabel.textContent = newText;
+        }
+    })
+}
+
 function createItem() {
     const taskName = inputAdd.value.trim();
-    if (taskName !== '') {
-        const task = `<li class="todolist_tasks"><input class="checkbox" type="checkbox"><label class="check_label">${taskName}</label><button class="item_buttons-edit"><img src="./src/icons/pencil.svg" alt="pencil icon"></button><button class="item_buttons-trash"><img src="./src/icons/trash.svg" alt="trash icon"></button></li>`;
+    if (taskName) {
+        const task = createTask(taskName);
 
         ulItems.insertAdjacentHTML("beforeend", task);
         inputAdd.value = '';
 
-        const deleteBtn = ulItems.lastElementChild.querySelector('.item_buttons-trash');
-
-        // console.log(deleteBtn);
         isEmpty();
 
-        deleteBtn.addEventListener('click', (e) => {
-            const item = e.target.closest('li');
-            console.log(item);
-            ulItems.removeChild(item);
-            isEmpty();
-        });
-
-        const editBtn = ulItems.lastElementChild.querySelector('.item_buttons-edit');
-
-        editBtn.addEventListener('click', (e) => {
-            const selectLabel = e.target.closest('li');
-            const editLabel = selectLabel.querySelector('label')
-            console.log(e.target);
-            console.log(selectLabel)
-            console.log(editLabel);
-            let newText = prompt('Edit task: ').trim();
-
-            if (newText == '') {
-                alert('Enter a valid task')
-            } else {
-                editLabel.textContent = newText;
-            }
-        })
-
+        hidrateDeleteBtn();
+        hidrateEditBtn();
     } else {
         alert('Enter a task')
     }
-}
+};
+
 
 addBtn.addEventListener("click", createItem);
 inputAdd.addEventListener("keyup", (e) => {

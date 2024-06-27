@@ -16,8 +16,7 @@ body {
 
 /* Title */
 .container_title {
-    margin-top: -5px;
-    margin-bottom: 5px;
+    transform: translateY(-5px);
 }
 
 .img-title {
